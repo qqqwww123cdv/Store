@@ -7,7 +7,7 @@
 
 <p>
   <strong>Image:</strong>
-  <%= link_to @product.image.filename, @product.image if @product.image.attached? %>
+  <%= image_tag (@product.image) if @product.image.attached? %>
 </p>
 
 <p>
