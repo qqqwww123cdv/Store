@@ -1,0 +1,24 @@
+<h1>Cards#show</h1>
+<p>Find me in app/views/cards/show.html.erb</p>
+
+<% @order_items.each do |item| %>
+  <h5><%= item.product.product_name %></h5>
+  <h5><%= item.product.price %></h5>
+  <h5><%= image_tag(item.product.image, class: "max_img_width")%></h5>
+  <h5><%= item.product.vendor_code %></h5>
+  <h5><%= item.product.description %></h5>
+
+  <%= form_for item, remote: true do |f| %>
+
+    <%= f.hidden_field :product_id, :value => item.product.id %>
+    <%= f.number_field :quantity, :value => item.quantity.to_i %>
+    <%= f.submit "Update Card "%>
+    <%= link_to "Remove Items", order_item_path(item), method: :delete, remote: true%>
+
+  <% end %>
+
+  <h2>Subtotal: <%= item.total %></h2>
+<% end %>
+
+
+<h1>Card subtotal: <%= current_order.subtotal %></h1>
